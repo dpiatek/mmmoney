@@ -1,9 +1,48 @@
-<div class="hero-unit">
-  <h1>Cheerio!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="row">
+
+  <div class="span4">
+    <h2>Enter your purchases:</h2>
+    <form ng-submit="addPurchase()" name="addPurchaseForm">
+      <label for="purchaseName">Name</label>
+      <input type="text" ng-model="purchaseName" required name="purchaseName">
+
+      <label for="purchaseTags">Tags</label>
+      <input type="text" ng-model="purchaseTags" required name="purchaseTags">
+
+      <label for="purchasePrice">Price</label>
+      <input type="text" ng-model="purchasePrice" required ng-pattern="/\d/" name="purchasePrice">
+
+      <label for="purchaseDate">Date <span class="greyed-out">(day/month/year)</span></label>
+      <input type="text" class="input-mini" required ng-pattern="/\d{1,2}/" ng-model="purchaseDateDay">
+      <input type="text" class="input-mini" required ng-pattern="/\d{1,2}/" ng-model="purchaseDateMonth">
+      <input type="text" class="input-mini" required ng-pattern="/\d{4}/" ng-model="purchaseDateYear">
+
+      <button type="submit" class="btn btn-info">Add Purchase</button>
+    </form>
+  </div>
+
+  <div class="span8">
+    <h2>Your purchases:</h2>
+    <table class="table">
+      <thead>
+        <th>Name</th>
+        <th>Tag</th>
+        <th>Price</th>
+        <th>Date</th>
+      </thead>
+      <tfoot>
+        <th></th>
+        <th>Total spent:</th>
+        <th>£{{totalPurchases()}}</th>
+      </tfoot>
+      <tr ng-repeat="purchase in purchases | orderBy:'+price'">
+        <th>{{purchase.name}}</th>
+        <th><span class="label">{{purchase.tags}}</span></th>
+        <th>£{{purchase.price}}</th>
+        <th>{{purchase.date.day}}/{{purchase.date.month}}/{{purchase.date.year}}</th>
+      </tr>
+    </table>
+  </div>
+
 </div>
+
