@@ -1,5 +1,5 @@
 /*jshint globalstrict: true*/
-/*globals mmmoneyApp:true, $:true */
+/*globals mmmoneyApp:true, $:true, console:true */
 'use strict';
 
 mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
