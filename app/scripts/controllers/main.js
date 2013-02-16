@@ -8,31 +8,35 @@ mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
     $scope.purchases = data;
   });
 
-  var today = (function(){
-    var now = new Date();
+  // Get today's date
+  $scope.today = (function(){
+    var now = new Date(),
+        day = now.getDate(),
+        month = now.getMonth() + 1,
+        year = now.getFullYear();
+
     return {
-      'formated_date': now.getDay() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear(),
-      'day': now.getDay(),
-      'month': now.getMonth() + 1,
-      'year': now.getFullYear()
+      'day': day,
+      'month': month,
+      'year': year,
+      'formated_date' : day + '/' + month + '/' + year
     };
   }());
 
-  $scope.purchaseDateDay = today.day;
-  $scope.purchaseDateMonth = today.month;
-  $scope.purchaseDateYear = today.year;
-
+  // Defaults
+  $scope.purchaseDay = $scope.today.day;
+  $scope.purchaseMonth = $scope.today.month;
+  $scope.purchaseYear = $scope.today.year;
 
   $scope.addPurchase = function() {
-    console.log(addPurchaseForm);
     $scope.purchases.push({
       name:  $scope.purchaseName,
       tags:  $scope.purchaseTags,
       price: $scope.purchasePrice,
       date:  {
-        'day': $scope.purchaseDateDay,
-        'month': $scope.purchaseDateMonth,
-        'year': $scope.purchaseDateYear
+        'day': $scope.purchaseDay,
+        'month': $scope.purchaseMonth,
+        'year': $scope.purchaseYear
       }
 
     });
@@ -45,12 +49,23 @@ mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
   };
 
   $scope.totalPurchases = function() {
-    var total = 0;
-    $scope.purchases.forEach(function(purchase){
+    var total = 0,
+        purchases = $filter('filter')($scope.purchases, $scope.search);
+
+    purchases.forEach(function(purchase){
       total += parseFloat(purchase.price, 10);
     });
 
     return total;
+  };
+
+  $scope.tags = function() {
+    var tags = [];
+    $scope.purchases.forEach(function(el){
+      tags.push(el.tags);
+    });
+
+    return tags;
   };
 
 });
