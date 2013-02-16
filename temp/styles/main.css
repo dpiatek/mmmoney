@@ -1,0 +1,6 @@
+@import url(bootstrap.css);
+/* Will be compiled down to a single stylesheet with your sass files */
+/* line 4, ../../app/styles/main.scss */
+.greyed-out {
+  color: #aaa;
+}
