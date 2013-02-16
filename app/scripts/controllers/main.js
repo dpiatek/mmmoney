@@ -2,7 +2,11 @@
 /*globals mmmoneyApp:true, $:true */
 'use strict';
 
-mmmoneyApp.controller('MainCtrl', function($scope) {
+mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
+
+  $http.get('dummy.json').success(function(data) {
+    $scope.purchases = data;
+  });
 
   var today = (function(){
     var now = new Date();
@@ -17,39 +21,6 @@ mmmoneyApp.controller('MainCtrl', function($scope) {
   $scope.purchaseDateDay = today.day;
   $scope.purchaseDateMonth = today.month;
   $scope.purchaseDateYear = today.year;
-
-  $scope.purchases = [
-  {
-    name: 'Nappies',
-    tags: 'baby',
-    price: 12.99,
-    date:  {
-        'day': $scope.purchaseDateDay,
-        'month': $scope.purchaseDateMonth,
-        'year': $scope.purchaseDateYear
-      }
-  },
-  {
-    name: 'Nappies',
-    tags: 'baby',
-    price: 22.99,
-    date:  {
-        'day': $scope.purchaseDateDay,
-        'month': $scope.purchaseDateMonth,
-        'year': $scope.purchaseDateYear
-      }
-  },
-  {
-    name: 'Nappies',
-    tags: 'baby',
-    price: 4.99,
-    date:  {
-        'day': $scope.purchaseDateDay,
-        'month': $scope.purchaseDateMonth,
-        'year': $scope.purchaseDateYear
-      }
-  }
-  ];
 
 
   $scope.addPurchase = function() {

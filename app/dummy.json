@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Nappies",
+    "tags": "baby",
+    "price": 12.99,
+    "date":  {
+        "day": 14,
+        "month": 1,
+        "year": 2013
+      }
+  },
+  {
+    "name": "Burger",
+    "tags": "food",
+    "price": 2.99,
+    "date":  {
+        "day": 14,
+        "month": 1,
+        "year": 2013
+      }
+  },
+  {
+    "name": "Car",
+    "tags": "motor",
+    "price": 54.99,
+    "date":  {
+        "day": 14,
+        "month": 1,
+        "year": 2013
+      }
+  }
+]
