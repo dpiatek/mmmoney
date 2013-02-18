@@ -3,28 +3,57 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width"/>
-        <link rel="stylesheet" href="styles/main.css"/>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="styles/main.css"/>
 
-    </head>
-    <body ng-app="mmmoneyApp">
+  </head>
+  <body ng-app="mmmoneyApp">
 
-        <!-- Add your site or application content here -->
-        <div class="container" ng-view></div>
+    <!-- Add your site or application content here -->
+    <div class="container" ng-controller="MainCtrl">
+      <div class="row">
 
-        <script src="scripts/vendor/angular.js"></script>
-        <script src="components/raphael/raphael.js"></script>
-        <script src="components/jquery/jquery.min.js"></script>
+        <div class="span4">
+          <h2>Enter your purchases:</h2>
 
-        <!-- build:js scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
+          <form ng-submit="addPurchase()" name="addPurchaseForm" class="purchase-form">
+            <label for="purchaseName">Name</label>
+            <input type="text" ng-model="purchaseName" name="purchaseName">
 
-    </body>
+            <label for="purchaseTags">Tags</label>
+            <input type="text" ng-model="purchaseTags" name="purchaseTags">
+
+            <label for="purchasePrice">Price</label>
+            <input type="text" ng-model="purchasePrice" ng-pattern="/\d/" name="purchasePrice">
+
+            <label for="purchaseDate">Date <span class="greyed-out">(day/month/year)</span></label>
+            <input type="text" class="input-mini" ng-pattern="/\d{1,2}/" ng-model="purchaseDay">
+            <input type="text" class="input-mini" ng-pattern="/\d{1,2}/" ng-model="purchaseMonth">
+            <input type="text" class="input-mini" ng-pattern="/\d{4}/" ng-model="purchaseYear">
+
+            <button type="submit" class="btn btn-info">Add Purchase</button><span class="invalid-{{formInvalid()}}">Invalid!</span>
+          </form>
+
+          <tag-manager></tag-manager>
+        </div>
+
+        <div class="span8" ng-view></div>
+      </div>
+    </div>
+
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="components/raphael/raphael.js"></script>
+    <script src="components/jquery/jquery.min.js"></script>
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!-- endbuild -->
+
+  </body>
 </html>
