@@ -31,7 +31,18 @@ mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http, getData) {
   $scope.purchaseMonth = $scope.today.month;
   $scope.purchaseYear = $scope.today.year;
 
+  $scope.formInvalid = function() {
+    console.log($scope.addPurchaseForm.$pristine);
+    if ($scope.addPurchaseForm.$pristine) return false;
+    return $scope.addPurchaseForm.$invalid;
+  };
+
   $scope.addPurchase = function() {
+
+    console.log($scope.addPurchaseForm);
+
+    if ($scope.formInvalid()) return;
+
     $scope.purchases.push({
       name:  $scope.purchaseName,
       tags:  $scope.purchaseTags,
@@ -52,6 +63,9 @@ mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http, getData) {
   };
 
   $scope.totalPurchases = function() {
+
+    if (!$scope.purchases) return;
+
     var total = 0,
         purchases = $filter('filter')($scope.purchases, $scope.search);
 

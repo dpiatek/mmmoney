@@ -4,3 +4,18 @@
 .greyed-out {
   color: #aaa;
 }
+
+/* line 8, ../../app/styles/main.scss */
+.invalid-false {
+  display: none;
+}
+
+/* line 12, ../../app/styles/main.scss */
+.invalid-true {
+  display: true;
+}
+
+/* line 16, ../../app/styles/main.scss */
+.ng-invalid .ng-invalid {
+  border: 1px solid red;
+}

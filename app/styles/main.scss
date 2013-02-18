@@ -4,3 +4,13 @@
 .greyed-out {
   color: #aaa;
 }
+
+.invalid-false {
+    display: none;
+}
+
+.invalid-true {
+    display: true;
+}
+
+.ng-invalid .ng-invalid { border:1px solid red; }
