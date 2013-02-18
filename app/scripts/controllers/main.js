@@ -2,11 +2,14 @@
 /*globals mmmoneyApp:true, $:true, console:true */
 'use strict';
 
-mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
+mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http, getData) {
 
-  $http.get('dummy.json').success(function(data) {
+  $scope.purchases = {};
+
+  getData.success(function(data) {
     $scope.purchases = data;
   });
+
 
   // Get today's date
   $scope.today = (function(){
@@ -58,6 +61,7 @@ mmmoneyApp.controller('MainCtrl', function($scope, $filter, $http) {
 
     return total;
   };
+
 
   $scope.tags = function() {
     var tags = [];
