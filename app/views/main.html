@@ -1,23 +1,22 @@
-<div class="span8">
-  <h2>Your purchases:</h2>
-  <table class="table">
-    <thead>
-      <th>Name</th>
-      <th>Tag</th>
-      <th>Price</th>
-      <th>Date</th>
-    </thead>
-    <tfoot>
-      <th></th>
-      <th>Total spent:</th>
-      <th>£{{totalPurchases()}}</th>
-    </tfoot>
-    <tr ng-repeat="purchase in purchases | filter:search ">
-      <th>{{purchase.name}}</th>
-      <th><span class="label">{{purchase.tags}}</span></th>
-      <th>£{{purchase.price}}</th>
-      <th>{{purchase.date.day}}/{{purchase.date.month}}/{{purchase.date.year}}</th>
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Tag</th>
+    <th>Price</th>
+    <th>Date</th>
+  </thead>
+  <tfoot>
+    <th></th>
+    <th>Total spent:</th>
+    <th>£{{totalPurchases()}}</th>
+  </tfoot>
+  <tbody ng-repeat="purchase in purchases | filter:search">
+    <tr ng-show="false"></tr>
+    <tr>
+      <td>{{purchase.name}}</td>
+      <td><span class="label">{{purchase.tags}}</span></td>
+      <td>£{{purchase.price}}</td>
+      <td>{{purchase.date.day}}/{{purchase.date.month}}/{{purchase.date.year}}</td>
     </tr>
-  </table>
-</div>
-
+  </tbody>
+</table>

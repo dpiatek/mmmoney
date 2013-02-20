@@ -16,6 +16,11 @@
 }
 
 /* line 16, ../../app/styles/main.scss */
+.range-controls {
+  margin-bottom: 20px;
+}
+
+/* line 20, ../../app/styles/main.scss */
 .ng-invalid .ng-invalid {
   border: 1px solid red;
 }
